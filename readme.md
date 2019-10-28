@@ -1,1 +1,1 @@
-# Akaiv Module template
+# Osu Akaiv module
