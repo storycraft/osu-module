@@ -8,18 +8,18 @@ import { OsuCommand } from "./command";
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 
-let objsama = require('ojsama');
+let ojsama = require('ojsama');
 
 export class MapPPCommand extends OsuCommand implements CommandInfo {
 
     private mapCache: Map<number, string> = new Map();
 
     get CommandList() {
-        return [ 'pp' ];
+        return [ 'pp', 'map' ];
     }
 
     get Description() {
-        return '해당 비트맵의 pp정보를 제공합니다 (언랭크 맵 불가능, 스탠다드만 지원)';
+        return '해당 비트맵의 정보를 제공합니다 (언랭크 맵 불가능, 스탠다드만 지원)';
     }
 
     get Usage() {
@@ -76,32 +76,38 @@ export class MapPPCommand extends OsuCommand implements CommandInfo {
                 return;
             }
 
-            let parser = new objsama.parser();
+            let parser = new ojsama.parser();
 
             parser.feed(mapStr);
 
             let map = parser.map;
-            let mods = objsama.modbits.from_string(args[1] || '');
-            let modsStr = objsama.modbits.string(mods);
 
-            let stars = new objsama.diff().calc({map: map, mods: mods});
+            if (map.mode !== 0 /*std*/) {
+                e.Channel.sendText(`해당 맵 ${map.artist_unicode} - ${map.title_unicode} [${map.version}] 은 스탠다드 맵이 아닙니다`);
+                return;
+            }
 
-            let ppInfo95 = objsama.ppv2({
+            let mods = ojsama.modbits.from_string(args[1] || '');
+            let modsStr = ojsama.modbits.string(mods);
+
+            let stars = new ojsama.diff().calc({map: map, mods: mods});
+
+            let ppInfo95 = ojsama.ppv2({
                 stars: stars,
                 acc_percent: 95,
             });
 
-            let ppInfo97 = objsama.ppv2({
+            let ppInfo97 = ojsama.ppv2({
                 stars: stars,
                 acc_percent: 97,
             });
 
-            let ppInfo99 = objsama.ppv2({
+            let ppInfo99 = ojsama.ppv2({
                 stars: stars,
                 acc_percent: 97,
             });
 
-            let ppInfo100 = objsama.ppv2({
+            let ppInfo100 = ojsama.ppv2({
                 stars: stars,
                 acc_percent: 100,
             });
