@@ -104,7 +104,7 @@ export class MapPPCommand extends OsuCommand implements CommandInfo {
 
             let ppInfo99 = ojsama.ppv2({
                 stars: stars,
-                acc_percent: 97,
+                acc_percent: 99,
             });
 
             let ppInfo100 = ojsama.ppv2({
