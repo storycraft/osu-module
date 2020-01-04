@@ -30,7 +30,7 @@ export class PlayerStdStatCommand extends OsuCommand implements CommandInfo {
         return `유저 이름: ${user.username}
 유저 id: ${user.userID}
 국가: ${user.country}
-모드: STD
+모드: Standard
 
 #${performance.rank}
 
@@ -85,7 +85,7 @@ export class PlayerTaikoStatCommand extends OsuCommand implements CommandInfo {
         return `유저 이름: ${user.username}
 유저 id: ${user.userID}
 국가: ${user.country}
-모드: TAIKO
+모드: Taiko
 
 #${performance.rank}
 
@@ -195,7 +195,7 @@ export class PlayerManiaStatCommand extends OsuCommand implements CommandInfo {
         return `유저 이름: ${user.username}
 유저 id: ${user.userID}
 국가: ${user.country}
-모드: MANIA
+모드: Mania
 
 #${performance.rank}
 

@@ -1,6 +1,7 @@
 import { BotModule } from "@akaiv/core";
 import { PlayerStdStatCommand, PlayerTaikoStatCommand, PlayerCTBStatCommand, PlayerManiaStatCommand } from "./stat-command";
 import { MapPPCommand } from "./map-command";
+import { URLReaction } from "./url/url-reaction";
 
 /*
  * Created on Sat Oct 26 2019
@@ -14,12 +15,16 @@ export class OsuModule extends BotModule {
 
     private apiWrapper: any;
 
+    private urlReaction: URLReaction;
+
     constructor({ osuToken }: {
         osuToken: string
     }) {
         super();
 
         this.apiWrapper = new HarmoniaOsu.Harmonia(osuToken);
+
+        this.urlReaction = new URLReaction(this, osuToken);
 
         //stats command
         this.CommandManager.addCommand(new PlayerStdStatCommand(this.apiWrapper));
