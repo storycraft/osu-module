@@ -1,5 +1,5 @@
 import OsuModule from "..";
-import { BotMessageEvent } from "@akaiv/core";
+import { BotMessageEvent, Logger } from "@akaiv/core";
 import { OsuApiUtil } from "../util/osu-api.util";
 
 /*
@@ -22,7 +22,7 @@ export class URLReaction {
         module.on('message', this.onMessage.bind(this));
     }
 
-    protected onMessage(e: BotMessageEvent) {
+    protected onMessage(e: BotMessageEvent, logger: Logger) {
         let urlList = e.Message.Text.match(this.urlRegex);
 
         if (!urlList)
@@ -50,6 +50,7 @@ export class URLReaction {
                 }
             }).catch((err: Error) => {
                 //e.Message.replyText(`비트맵 정보를 가져오는중 오류가 발생 했습니다. ${err}`);
+                logger.error(`비트맵 정보를 가져오는중 오류가 발생 했습니다. ${err}`);
             });
 
             usedURL.push(url);

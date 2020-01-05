@@ -1,4 +1,4 @@
-import { CommandInfo, BotCommandEvent, SpaceSplitedParser } from "@akaiv/core";
+import { CommandInfo, BotCommandEvent, SpaceSplitedParser, Logger } from "@akaiv/core";
 import { get } from "request-promise";
 import { OsuCommand } from "./command";
 
@@ -53,7 +53,7 @@ export class MapPPCommand extends OsuCommand implements CommandInfo {
         return res;
     }
     
-    async onCommand(e: BotCommandEvent) {
+    async onCommand(e: BotCommandEvent, logger: Logger) {
         let args = new SpaceSplitedParser().parse(e.RawArgument);
 
         if (args.length < 1) {
@@ -127,8 +127,9 @@ ${stars.toString()}
 100%: ${ppInfo100}
 `);
 
-        } catch (e) {
-            e.Channel.sendText(`api 요청중 오류가 발생했습니다. ${e}`);
+        } catch (err) {
+            e.Channel.sendText(`api 요청중 오류가 발생했습니다. ${err}`);
+            logger.warning(`api 요청중 오류가 발생했습니다. ${err}`);
         }
     }
 
