@@ -11,12 +11,15 @@ import { OsuApiUtil } from "../util/osu-api.util";
 export class URLReaction {
 
     private urlRegex: RegExp;
+
     private mapRegex: RegExp;
+
     private setIdRegex: RegExp;
     
     constructor(private module: OsuModule, private token: string) {
-        this.urlRegex = /(https?:\/\/osu.ppy.sh\/b(eatmapsets)?[^\s]+)/g;
-        this.mapRegex = /(https?:\/\/osu.ppy.sh\/b(eatmapsets)?\/)/g;
+        this.urlRegex = /(http(s)?:\/\/(bloodcat.com\/osu\/s|osu.ppy.sh\/(b|beatmapsets))?\/?[^\s]+)/g;
+        this.mapRegex = /(http(s)?:\/\/(bloodcat.com\/osu\/s|osu.ppy.sh\/(b|beatmapsets))?\/)/g;
+
         this.setIdRegex = /^\d+/g;
 
         module.on('message', this.onMessage.bind(this));
@@ -41,13 +44,14 @@ export class URLReaction {
             let id = idList[0];
 
             OsuApiUtil.getBeatmapListAsync(this.token, Number.parseInt(id)).then((list: any) => {
-                for (let obj of list) {
-                    var infoMessage = `비트맵 정보\n\n${obj.artist} - ${obj.title}\nbpm: ${obj.bpm}\n제작자: ${obj.creator}\n업데이트 날짜: ${obj.last_update}\n태그: ${obj.tags}`;
+                if (list.length > 0) {
+                    let obj = list[0];
+                    var infoMessage = `비트맵셋 정보\n\n${obj['artist']} - ${obj['title']}\nbpm: ${obj['bpm']}\n제작자: ${obj['creator']}(${obj['creator_id']})\n업데이트 날짜: ${obj['last_update']}\n비트맵: ${list.length} 개\n태그: ${obj['tags']}`;
 
                     e.Message.replyText(infoMessage);
-                    
-                    return;
                 }
+
+                
             }).catch((err: Error) => {
                 //e.Message.replyText(`비트맵 정보를 가져오는중 오류가 발생 했습니다. ${err}`);
                 logger.error(`비트맵 정보를 가져오는중 오류가 발생 했습니다. ${err}`);
