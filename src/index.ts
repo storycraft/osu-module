@@ -6,6 +6,3 @@ import { OsuModule } from './osu-module';
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 export default OsuModule;
-
-export * from './osu-module';
-export * from './stat-command';
