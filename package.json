@@ -19,7 +19,7 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
-    "@akaiv/core": "^1.2.7",
+    "@akaiv/core": "^1.2.8",
     "axios": "^0.18.0",
     "axios-extensions": "^3.0.4",
     "bottleneck": "^2.15.0",
