@@ -74,7 +74,7 @@ class PlayerTaikoStatCommand extends command_1.OsuCommand {
 정확도: ${Number.parseFloat(user.accuracy).toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${Number.parseFloat(user.accuracy).toFixed(2)} (${user.playTime} 초)
+플레이 시간: ${time_util_1.TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -120,7 +120,7 @@ class PlayerCTBStatCommand extends command_1.OsuCommand {
 정확도: ${Number.parseFloat(user.accuracy).toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${Number.parseFloat(user.accuracy).toFixed(2)} (${user.playTime} 초)
+플레이 시간: ${time_util_1.TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -166,7 +166,7 @@ class PlayerManiaStatCommand extends command_1.OsuCommand {
 정확도: ${Number.parseFloat(user.accuracy).toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${Number.parseFloat(user.accuracy).toFixed(2)} (${user.playTime} 초)
+플레이 시간: ${time_util_1.TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
