@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const command_1 = require("./command");
+const time_util_1 = require("./util/time-util");
 const HarmoniaOsu = require('harmonia-osu');
 class PlayerStdStatCommand extends command_1.OsuCommand {
     get CommandList() {
@@ -24,10 +25,10 @@ class PlayerStdStatCommand extends command_1.OsuCommand {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${user.accuracy.toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${time_util_1.TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -70,10 +71,10 @@ class PlayerTaikoStatCommand extends command_1.OsuCommand {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${user.accuracy.toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${time_util_1.TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -116,10 +117,10 @@ class PlayerCTBStatCommand extends command_1.OsuCommand {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${user.accuracy.toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${time_util_1.TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -162,10 +163,10 @@ class PlayerManiaStatCommand extends command_1.OsuCommand {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${user.accuracy.toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${time_util_1.TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}

@@ -1,5 +1,6 @@
 import { CommandInfo, BotCommandEvent } from "@akaiv/core";
 import { OsuCommand } from "./command";
+import { TimeUtil } from "./util/time-util";
 
 /*
  * Created on Sat Oct 26 2019
@@ -36,10 +37,10 @@ export class PlayerStdStatCommand extends OsuCommand implements CommandInfo {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${(user.accuracy as number).toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -91,10 +92,10 @@ export class PlayerTaikoStatCommand extends OsuCommand implements CommandInfo {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${(user.accuracy as number).toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -146,10 +147,10 @@ export class PlayerCTBStatCommand extends OsuCommand implements CommandInfo {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${(user.accuracy as number).toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
@@ -201,10 +202,10 @@ export class PlayerManiaStatCommand extends OsuCommand implements CommandInfo {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy}
+정확도: ${(user.accuracy as number).toFixed(2)}
 PP: ${performance.raw}
 
-플레이 시간: ${user.playTime}
+플레이 시간: ${TimeUtil.toFriendlyTime(user.playTime)} (${user.playTime} 초)
 플레이 카운트: ${user.playCount}
 
 총 점수: ${scores.total}
