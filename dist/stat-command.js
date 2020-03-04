@@ -44,7 +44,7 @@ PP: ${performance.raw}
         prm.then((user) => {
             e.Channel.sendText(this.buildStdStat(user));
         }).catch((ex) => {
-            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${e}`);
+            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${ex}`);
         });
     }
 }
@@ -89,8 +89,8 @@ PP: ${performance.raw}
         let prm = this.APIWrapper.getUser(username, HarmoniaOsu.Modes.TAIKO);
         prm.then((user) => {
             e.Channel.sendText(this.buildTaikoStat(user));
-        }).catch((e) => {
-            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${e}`);
+        }).catch((ex) => {
+            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${ex}`);
         });
     }
 }
@@ -136,7 +136,7 @@ PP: ${performance.raw}
         prm.then((user) => {
             e.Channel.sendText(this.buildCTBStat(user));
         }).catch((ex) => {
-            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${e}`);
+            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${ex}`);
         });
     }
 }
@@ -182,7 +182,7 @@ PP: ${performance.raw}
         prm.then((user) => {
             e.Channel.sendText(this.buildManiaStat(user));
         }).catch((ex) => {
-            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${e}`);
+            e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${ex}`);
         });
     }
 }

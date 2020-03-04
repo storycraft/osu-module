@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var TimeUtil;
 (function (TimeUtil) {
     function toFriendlyTime(time) {
+        if (typeof (time) === 'string')
+            time = Number.parseInt(time);
         let secs = time % 60;
         let min = Math.floor(time / 60) % 60;
         let hours = Math.floor(time / 3600) % 24;
