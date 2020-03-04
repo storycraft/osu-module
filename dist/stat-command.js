@@ -43,7 +43,7 @@ PP: ${performance.raw}
         let prm = this.APIWrapper.getUser(username, HarmoniaOsu.Modes.STD);
         prm.then((user) => {
             e.Channel.sendText(this.buildStdStat(user));
-        }).catch((e) => {
+        }).catch((ex) => {
             e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${e}`);
         });
     }
@@ -135,7 +135,7 @@ PP: ${performance.raw}
         let prm = this.APIWrapper.getUser(username, HarmoniaOsu.Modes.CTB);
         prm.then((user) => {
             e.Channel.sendText(this.buildCTBStat(user));
-        }).catch((e) => {
+        }).catch((ex) => {
             e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${e}`);
         });
     }
@@ -181,7 +181,7 @@ PP: ${performance.raw}
         let prm = this.APIWrapper.getUser(username, HarmoniaOsu.Modes.MANIA);
         prm.then((user) => {
             e.Channel.sendText(this.buildManiaStat(user));
-        }).catch((e) => {
+        }).catch((ex) => {
             e.Channel.sendText(`커맨드 처리중 오류가 발생 했습니다. ${e}`);
         });
     }
