@@ -71,7 +71,7 @@ class PlayerTaikoStatCommand extends command_1.OsuCommand {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy.toFixed(2)}
+정확도: ${Number.parseFloat(user.accuracy).toFixed(2)}
 PP: ${performance.raw}
 
 플레이 시간: ${Number.parseFloat(user.accuracy).toFixed(2)} (${user.playTime} 초)
@@ -117,7 +117,7 @@ class PlayerCTBStatCommand extends command_1.OsuCommand {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy.toFixed(2)}
+정확도: ${Number.parseFloat(user.accuracy).toFixed(2)}
 PP: ${performance.raw}
 
 플레이 시간: ${Number.parseFloat(user.accuracy).toFixed(2)} (${user.playTime} 초)
@@ -163,7 +163,7 @@ class PlayerManiaStatCommand extends command_1.OsuCommand {
 
 레벨: ${user.level}
 
-정확도: ${user.accuracy.toFixed(2)}
+정확도: ${Number.parseFloat(user.accuracy).toFixed(2)}
 PP: ${performance.raw}
 
 플레이 시간: ${Number.parseFloat(user.accuracy).toFixed(2)} (${user.playTime} 초)
