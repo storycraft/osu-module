@@ -50,7 +50,7 @@ export namespace OsuUtil {
         let res: string = await get(urlFunc(id));
 
         if (!validCheckFunc(res)) {
-            return res;
+            return '';
         }
 
         mapCache.set(id, res);

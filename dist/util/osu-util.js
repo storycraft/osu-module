@@ -44,7 +44,7 @@ var OsuUtil;
         }
         let res = await request_promise_1.get(urlFunc(id));
         if (!validCheckFunc(res)) {
-            return res;
+            return '';
         }
         mapCache.set(id, res);
         return res;
