@@ -24,7 +24,7 @@ export namespace OsuUtil {
     }
 
     export function getBloodcatBeatmapURL(id: number) {
-        return `https://osu.ppy.sh/osu/${id}`;
+        return `https://bloodcat.com/osu/b/${id}`;
     }
 
     function validCheckOfficial(res: string): boolean {

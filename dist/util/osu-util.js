@@ -22,7 +22,7 @@ var OsuUtil;
     }
     OsuUtil.getOfficialBeatmapURL = getOfficialBeatmapURL;
     function getBloodcatBeatmapURL(id) {
-        return `https://osu.ppy.sh/osu/${id}`;
+        return `https://bloodcat.com/osu/b/${id}`;
     }
     OsuUtil.getBloodcatBeatmapURL = getBloodcatBeatmapURL;
     function validCheckOfficial(res) {
