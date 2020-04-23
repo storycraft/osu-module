@@ -37,7 +37,7 @@ export class BackgroundCommand implements CommandInfo {
             return;
         }
 
-        let mapStr = await OsuUtil.getBloodcatBeatmapURL(id);
+        let mapStr = await OsuUtil.getMapStringBloodcat(id);
 
         if (mapStr === '') {
             e.Channel.sendText(`${id} 은(는) 올바른 비트맵이 아닙니다`);
@@ -56,9 +56,9 @@ export class BackgroundCommand implements CommandInfo {
         let filename = `${name}.jpg`;
 
         req.on('response', (res) => {
-            var name = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
-            if (name) {
-                filename = name[2];
+            var contentName = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
+            if (contentName) {
+                filename = contentName[2];
             }
         });
 
@@ -116,9 +116,9 @@ export class AudioCommand implements CommandInfo {
         let filename = `${name}.mp3`;
 
         req.on('response', (res) => {
-            var name = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
-            if (name) {
-                filename = name[2];
+            var contentName = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
+            if (contentName) {
+                filename = contentName[2];
             }
         });
 

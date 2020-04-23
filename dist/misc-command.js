@@ -24,7 +24,7 @@ class BackgroundCommand {
             e.Channel.sendText(`${id} 은(는) 올바른 비트맵 id가 아닙니다`);
             return;
         }
-        let mapStr = await osu_util_1.OsuUtil.getBloodcatBeatmapURL(id);
+        let mapStr = await osu_util_1.OsuUtil.getMapStringBloodcat(id);
         if (mapStr === '') {
             e.Channel.sendText(`${id} 은(는) 올바른 비트맵이 아닙니다`);
             return;
@@ -36,9 +36,9 @@ class BackgroundCommand {
         let req = request_promise_1.get(`https://bloodcat.com/osu/i/${id}`, { encoding: null });
         let filename = `${name}.jpg`;
         req.on('response', (res) => {
-            var name = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
-            if (name) {
-                filename = name[2];
+            var contentName = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
+            if (contentName) {
+                filename = contentName[2];
             }
         });
         let backgroundBuffer = await req;
@@ -78,9 +78,9 @@ class AudioCommand {
         let req = request_promise_1.get(`https://bloodcat.com/osu/a/${id}`, { encoding: null });
         let filename = `${name}.mp3`;
         req.on('response', (res) => {
-            var name = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
-            if (name) {
-                filename = name[2];
+            var contentName = res.headers['content-disposition'] && res.headers['content-disposition'].match(/(filename=|filename\*='')(.*)$/);
+            if (contentName) {
+                filename = contentName[2];
             }
         });
         let audioBuffer = await req;
