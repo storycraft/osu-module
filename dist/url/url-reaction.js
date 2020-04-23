@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const osu_api_util_1 = require("../util/osu-api.util");
+const osu_util_1 = require("../util/osu-util");
 class URLReaction {
     constructor(module, token) {
         this.module = module;
@@ -22,7 +22,7 @@ class URLReaction {
             if (!idList)
                 continue;
             let id = idList[0];
-            osu_api_util_1.OsuApiUtil.getBeatmapListAsync(this.token, Number.parseInt(id)).then((list) => {
+            osu_util_1.OsuApiUtil.getBeatmapListAsync(this.token, Number.parseInt(id)).then((list) => {
                 if (list.length > 0) {
                     let obj = list[0];
                     var infoMessage = `비트맵셋 정보\n\n${obj['artist']} - ${obj['title']}\nbpm: ${obj['bpm']}\n제작자: ${obj['creator']}(${obj['creator_id']})\n업데이트 날짜: ${obj['last_update']}\n비트맵: ${list.length} 개\n태그: ${obj['tags']}`;

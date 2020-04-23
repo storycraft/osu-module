@@ -1,14 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@akaiv/core");
-const request_promise_1 = require("request-promise");
 const command_1 = require("./command");
-let ojsama = require('ojsama');
+const osu_util_1 = require("./util/osu-util");
+const ojsama = require('ojsama');
 class MapPPCommand extends command_1.OsuCommand {
-    constructor() {
-        super(...arguments);
-        this.mapCache = new Map();
-    }
     get CommandList() {
         return ['pp', 'map'];
     }
@@ -17,27 +13,6 @@ class MapPPCommand extends command_1.OsuCommand {
     }
     get Usage() {
         return 'osu/pp <비트맵 id> [모드 조합]';
-    }
-    getBeatmapURL(id) {
-        return `https://osu.ppy.sh/osu/${id}`;
-    }
-    async getMapString(id) {
-        if (this.mapCache.has(id)) {
-            return this.mapCache.get(id);
-        }
-        else if (this.mapCache.size > 20) {
-            let deleteCount = this.mapCache.size - 20;
-            let keys = this.mapCache.keys();
-            for (let i = 0; i < deleteCount; i++) {
-                this.mapCache.delete(keys.next().value);
-            }
-        }
-        let res = await request_promise_1.get(this.getBeatmapURL(id));
-        if (res === '') {
-            return res;
-        }
-        this.mapCache.set(id, res);
-        return res;
     }
     async onCommand(e, logger) {
         let args = new core_1.SpaceSplitedParser().parse(e.RawArgument);
@@ -51,7 +26,7 @@ class MapPPCommand extends command_1.OsuCommand {
             return;
         }
         try {
-            let mapStr = await this.getMapString(id);
+            let mapStr = await osu_util_1.OsuUtil.getMapStringOsu(id);
             if (mapStr === '') {
                 e.Channel.sendText(`${id} 은(는) 올바른 비트맵이 아닙니다`);
                 return;

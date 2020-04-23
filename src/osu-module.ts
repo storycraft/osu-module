@@ -2,6 +2,7 @@ import { BotModule } from "@akaiv/core";
 import { PlayerStdStatCommand, PlayerTaikoStatCommand, PlayerCTBStatCommand, PlayerManiaStatCommand } from "./stat-command";
 import { MapPPCommand } from "./map-command";
 import { URLReaction } from "./url/url-reaction";
+import { BackgroundCommand, AudioCommand } from "./misc-command";
 
 /*
  * Created on Sat Oct 26 2019
@@ -34,6 +35,9 @@ export class OsuModule extends BotModule {
 
         //map command
         this.CommandManager.addCommand(new MapPPCommand(this.apiWrapper));
+
+        this.CommandManager.addCommand(new BackgroundCommand());
+        this.CommandManager.addCommand(new AudioCommand());
     }
 
     get APIWrapper() {

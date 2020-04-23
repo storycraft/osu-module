@@ -4,6 +4,7 @@ const core_1 = require("@akaiv/core");
 const stat_command_1 = require("./stat-command");
 const map_command_1 = require("./map-command");
 const url_reaction_1 = require("./url/url-reaction");
+const misc_command_1 = require("./misc-command");
 const HarmoniaOsu = require('harmonia-osu');
 class OsuModule extends core_1.BotModule {
     constructor({ osuToken }) {
@@ -15,6 +16,8 @@ class OsuModule extends core_1.BotModule {
         this.CommandManager.addCommand(new stat_command_1.PlayerCTBStatCommand(this.apiWrapper));
         this.CommandManager.addCommand(new stat_command_1.PlayerManiaStatCommand(this.apiWrapper));
         this.CommandManager.addCommand(new map_command_1.MapPPCommand(this.apiWrapper));
+        this.CommandManager.addCommand(new misc_command_1.BackgroundCommand());
+        this.CommandManager.addCommand(new misc_command_1.AudioCommand());
     }
     get APIWrapper() {
         return this.apiWrapper;

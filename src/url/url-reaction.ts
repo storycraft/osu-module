@@ -1,6 +1,6 @@
 import OsuModule from "..";
 import { BotMessageEvent, Logger } from "@akaiv/core";
-import { OsuApiUtil } from "../util/osu-api.util";
+import { OsuApiUtil } from "../util/osu-util";
 
 /*
  * Created on Sat Jan 04 2020

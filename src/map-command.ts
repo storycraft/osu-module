@@ -1,6 +1,7 @@
 import { CommandInfo, BotCommandEvent, SpaceSplitedParser, Logger } from "@akaiv/core";
 import { get } from "request-promise";
 import { OsuCommand } from "./command";
+import { OsuUtil } from "./util/osu-util";
 
 /*
  * Created on Sun Oct 27 2019
@@ -8,11 +9,9 @@ import { OsuCommand } from "./command";
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 
-let ojsama = require('ojsama');
+const ojsama = require('ojsama');
 
 export class MapPPCommand extends OsuCommand implements CommandInfo {
-
-    private mapCache: Map<number, string> = new Map();
 
     get CommandList() {
         return [ 'pp', 'map' ];
@@ -24,33 +23,6 @@ export class MapPPCommand extends OsuCommand implements CommandInfo {
 
     get Usage() {
         return 'osu/pp <비트맵 id> [모드 조합]';
-    }
-
-    getBeatmapURL(id: number) {
-        return `https://osu.ppy.sh/osu/${id}`;
-    }
-
-    async getMapString(id: number): Promise<string> {
-        if (this.mapCache.has(id)) {
-            return this.mapCache.get(id) as string;
-        } else if (this.mapCache.size > 20) {
-            let deleteCount = this.mapCache.size - 20;
-            let keys = this.mapCache.keys();
-
-            for (let i = 0; i < deleteCount; i++) {
-                this.mapCache.delete(keys.next().value);
-            }
-        }
-
-        let res: string = await get(this.getBeatmapURL(id));
-
-        if (res === '') {
-            return res;
-        }
-
-        this.mapCache.set(id, res);
-
-        return res;
     }
     
     async onCommand(e: BotCommandEvent, logger: Logger) {
@@ -69,7 +41,7 @@ export class MapPPCommand extends OsuCommand implements CommandInfo {
         }
 
         try {
-            let mapStr = await this.getMapString(id);
+            let mapStr = await OsuUtil.getMapStringOsu(id);
 
             if (mapStr === '') {
                 e.Channel.sendText(`${id} 은(는) 올바른 비트맵이 아닙니다`);
