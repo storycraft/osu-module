@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@akaiv/core": "^1.2.8",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "axios-extensions": "^3.0.4",
     "bottleneck": "^2.15.0",
     "harmonia-osu": "^1.0.7",
